@@ -10,7 +10,7 @@
 # rubel/usd price
 # rubel/gbp price
 # rubel/zapsy price
-# add matplotlib chart to media and add random frog meme
+# add matplotlib chart to media 
 # if weekend only post memes and retweet ukraine
 # if someone replies to post, reply with a meme to him
 # TODO 3
