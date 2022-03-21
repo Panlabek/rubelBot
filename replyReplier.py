@@ -16,6 +16,7 @@ auth=tweepy.OAuthHandler(consumer_key=CONSUMER_KEY, consumer_secret=CONSUMER_SEC
 auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 api=tweepy.API(auth)
 
+# this needs fixing
 def replyToReplies(pepe_image: str, pepe_image2: str):
     minuser = datetime.timedelta(minutes=80) # some kind of god created time delta
     start_time = datetime.datetime.now() - minuser
