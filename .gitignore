@@ -2,6 +2,5 @@
 *.png
 __pycache__/
 pepe_photos/
-activate.d/
-deactivate.d/
+.env
 
