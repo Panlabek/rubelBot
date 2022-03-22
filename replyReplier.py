@@ -16,13 +16,14 @@ auth=tweepy.OAuthHandler(consumer_key=CONSUMER_KEY, consumer_secret=CONSUMER_SEC
 auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 api=tweepy.API(auth)
 
-# this needs fixing
-def replyToReplies(pepe_image: str, pepe_image2: str):
-    minuser = datetime.timedelta(minutes=80) # some kind of god created time delta
+def replyToReplies(pepe_image: str, pepe_image2: str, usedTweets: list[str]) -> str:
+    minuser = datetime.timedelta(minutes=70) 
     start_time = datetime.datetime.now() - minuser
     tweets = client.search_recent_tweets(query="to:0xpiplup", start_time=start_time) 
     if tweets.data != None:
         for tweet in tweets.data:
-            images = (pepe_image, pepe_image2)
-            media_ids = [api.media_upload(i).media_id_string for i in images]
-            client.create_tweet(in_reply_to_tweet_id=tweet.id, media_ids=media_ids)
+            if tweet.id not in usedTweets:
+                usedTweets.append(tweet.id)
+                images = (pepe_image, pepe_image2)
+                media_ids = [api.media_upload(i).media_id_string for i in images]
+                client.create_tweet(in_reply_to_tweet_id=tweet.id, media_ids=media_ids)

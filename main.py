@@ -5,11 +5,12 @@ from pepeRandomGenerator import getRandomPepe
 from tweetPoster import rubTweetPoster
 from placeGenerator import getRandomUkrainianCity
 from replyReplier import replyToReplies
-from ukraineMemes import rtUkraine
+# from ukraineMemes import rtUkraine this needs to get fixed
 import pytz
 
 def main():
     tweets = []
+    usedTweetList = []
     try:
         while True:
             if int(datetime.datetime.now().astimezone(pytz.utc).strftime("%H")) == 13 and len(tweets) == 0:
@@ -27,9 +28,9 @@ def main():
                                pepe_image=pepe_path, place_id=random_place)
             if int(datetime.datetime.now().astimezone(pytz.utc).strftime("%H")) == 14 and len(tweets) > 0:
                 tweets.clear()
-            if int(datetime.datetime.now().astimezone(pytz.utc).strftime("%M")) <= 2:
-                replyToReplies(getRandomPepe(), getRandomPepe())
-                rtUkraine()
+            if int(datetime.datetime.now().astimezone(pytz.utc).strftime("%M")) % 2 == 0 and int(datetime.datetime.now().astimezone(pytz.utc).strftime("%S")) == 0:
+                replyToReplies(getRandomPepe(), getRandomPepe(), usedTweetList)
+                 
     except KeyboardInterrupt:
         print("Bot has been stopped")
 
