@@ -1,9 +1,7 @@
-FROM fedora:latest
+FROM python:slim
 COPY . /app
-WORKDIR /app
-RUN ["dnf", "install", "python3", "-y"]
 
-RUN ["dnf", "install", "python-pip", "-y"]
+WORKDIR /app
 
 RUN ["pip", "install", "-r", "rubelBot.txt"]
 
