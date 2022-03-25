@@ -1,9 +1,10 @@
 import numpy
+import yfinance as yahooFinance
 def convertFromRtoP(rubelPrice: str) -> str:
-    # TODO fetch gbp price from yahoo
-    gbp_price = str(numpy.float64(rubelPrice) / 1.3180)
-    return gbp_price[:11]
+    gbpRatio = yahooFinance.Ticker("GBPUSD=X").info
+    gbpPrice = str(numpy.float64(rubelPrice) / gbpRatio["ask"])
+    return gbpPrice[:11]
 def convertFromRtoE(rubelPrice: str) -> str:
-    # TODO fetch eur price from yahoo
-    eur_price = str(numpy.float64(rubelPrice) / 1.1062)
-    return eur_price[:11]
+    euroRatio = yahooFinance.Ticker("EURUSD=X").info
+    eurPrice = str(numpy.float64(rubelPrice) / euroRatio["ask"])
+    return eurPrice[:11]
