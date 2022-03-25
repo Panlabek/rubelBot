@@ -11,18 +11,18 @@ def main():
     tweets, usedTweetList = [], []
     try:
         while True:
-            utc_time = datetime.datetime.now().astimezone(pytz.utc)
-            if int(utc_time.strftime("%H")) == 13 and len(tweets) == 0:
-                start_date = datetime.datetime.now() - datetime.timedelta(days=365) 
-                end_date = datetime.datetime.now()
-                rubPrice = dataFetcher(start_date, end_date)
-                matplotlibImg = f"RUB|USD{str(end_date)[:10]}.png"
+            utcTime = datetime.datetime.now().astimezone(pytz.utc)
+            if int(utcTime.strftime("%H")) == 13 and len(tweets) == 0:
+                startDate = datetime.datetime.now() - datetime.timedelta(days=365) 
+                endDate = datetime.datetime.now()
+                rubPrice = dataFetcher(startDate, endDate)
+                matplotlibImg = f"RUB|USD{str(endDate)[:10]}.png"
                 tweets.append("Tweeted")
                 rubTweetPoster(rub_price=rubPrice, matplotlib_img=matplotlibImg,
                                place_id=getRandomUkrainianCity())
-            if int(utc_time.strftime("%H")) == 14 and len(tweets) > 0:
+            if int(utcTime.strftime("%H")) == 14 and len(tweets) > 0:
                 tweets.clear()
-            if int(utc_time.strftime("%M")) % 2 == 0 and int(utc_time.strftime("%S")) == 0:
+            if int(utcTime.strftime("%M")) % 2 == 0 and int(utcTime.strftime("%S")) == 0:
                 replyToReplies(usedTweetList)
                  
     except KeyboardInterrupt:

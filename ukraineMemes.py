@@ -12,9 +12,9 @@ client = tweepy.Client(bearer_token=BEARER_TOKEN,
                        consumer_key=CONSUMER_KEY,
                        consumer_secret=CONSUMER_SECRET)
 def rtUkraine():
-    minuser = datetime.timedelta(minutes=80) # some kind of god created time delta
-    start_time = datetime.datetime.now() - minuser
-    tweets = client.search_recent_tweets(query="from:ukraine -is:reply", start_time=start_time)
+    minuser = datetime.timedelta(minutes=80) 
+    startTime = datetime.datetime.now() - minuser
+    tweets = client.search_recent_tweets(query="from:ukraine -is:reply", start_time=startTime)
     if tweets.data != None:
         for tweet in tweets:
             client.retweet(tweet_id=tweet.id)

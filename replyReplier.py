@@ -18,14 +18,15 @@ auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 api=tweepy.API(auth)
 
 def replyToReplies(usedTweets: list[str]) -> str:
-    minuser = datetime.timedelta(minutes=70) 
-    start_time = datetime.datetime.now() - minuser
-    tweets = client.search_recent_tweets(query="to:0xpiplup", start_time=start_time) 
+    timeDiff = datetime.timedelta(minutes=70) 
+    startTime = datetime.datetime.now() - timeDiff
+    tweets = client.search_recent_tweets(query="to:0xpiplup", start_time=startTime) 
     if tweets.data != None:
         for tweet in tweets.data:
             if tweet.id not in usedTweets:
                 usedTweets.append(tweet.id)
                 images = (getRandomPepe(), getRandomPepe())
-                media_ids = [api.media_upload(i).media_id_string for i in images]
+                # read about api.media.upload in tweepy docs
+                mediaIds = [api.media_upload(i).media_id_string for i in images]
                 client.like(tweet_id=tweet.id)
-                client.create_tweet(in_reply_to_tweet_id=tweet.id, media_ids=media_ids)
+                client.create_tweet(in_reply_to_tweet_id=tweet.id, media_ids=mediaIds)

@@ -8,12 +8,12 @@ COLORS = ["midnightblue", "navy", "darkblue", "mediumblue", "blue", "slateblue",
         "crimson", "pink", "lightpink", "ivory", "teal", "darkslategray", "dodgerblue", "steelblue", "lightslategray", "royalblue",
         "ghostwhite", "lavender", "cornflowerblue"]
 
-def dataFetcher(start_date: str, end_date) -> str:
-    color_id = random.randrange(0,40)
-    color = COLORS[color_id]
-    data = web.DataReader(name="RUBUSD=X", data_source="yahoo", start=start_date, end=end_date)
+def dataFetcher(startDate: str, endDate) -> str:
+    colorId = random.randrange(0,40)
+    color = COLORS[colorId]
+    data = web.DataReader(name="RUBUSD=X", data_source="yahoo", start=startDate, end=endDate)
     plt.title("RUB/USD")
     plt.plot(data["Adj Close"], color=color)
-    plt.savefig(f"RUB|USD{str(end_date)[:10]}.png")
-    data.to_csv(f"RUB|USD{str(end_date)[:10]}.csv")
+    plt.savefig(f"RUB|USD{str(endDate)[:10]}.png")
+    data.to_csv(f"RUB|USD{str(endDate)[:10]}.csv")
     return str(data["Adj Close"][-1])[:11]
