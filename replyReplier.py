@@ -25,8 +25,7 @@ def replyToReplies(usedTweets: list[str]) -> str:
         for tweet in tweets.data:
             if tweet.id not in usedTweets:
                 usedTweets.append(tweet.id)
-                images = (getRandomPepe(), getRandomPepe())
-                # read about api.media.upload in tweepy docs
-                mediaIds = [api.media_upload(i).media_id_string for i in images]
+                pepeId = api.media_upload(getRandomPepe()).media_id_string
+                pepeId = [pepeId]
                 client.like(tweet_id=tweet.id)
-                client.create_tweet(in_reply_to_tweet_id=tweet.id, media_ids=mediaIds)
+                client.create_tweet(in_reply_to_tweet_id=tweet.id, media_ids=pepeId)
