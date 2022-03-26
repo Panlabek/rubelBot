@@ -5,10 +5,11 @@ from tweetPoster import rubTweetPoster
 from placeGenerator import getRandomUkrainianCity
 from replyReplier import replyToReplies
 # from ukraineMemes import rtUkraine this needs to get fixed
+from tagReplier import replyToTags
 import pytz
 
 def main():
-    tweets, usedTweetList = [], []
+    tweets, usedTweetList, usedTagTweets = [], [], []
     try:
         while True:
             utcTime = datetime.datetime.now().astimezone(pytz.utc)
@@ -24,7 +25,8 @@ def main():
                 tweets.clear()
             if int(utcTime.strftime("%M")) % 2 == 0 and int(utcTime.strftime("%S")) == 0:
                 replyToReplies(usedTweetList)
-                 
+            if int(utcTime.strftime("%M")) % 2 == 0 and int(utcTime.strftime("%S")) == 30:
+                replyToTags(usedTaggedTweets=usedTagTweets)
     except KeyboardInterrupt:
         print("Bot has been turned off")
 
