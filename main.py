@@ -9,7 +9,8 @@ from tagReplier import replyToTags
 import pytz
 
 def main():
-    tweets, usedTweetList, usedTagTweets = [], [], []
+    tweets, usedTweetList = [], []
+    usedTaggedTweets = []
     try:
         while True:
             utcTime = datetime.datetime.now().astimezone(pytz.utc)
@@ -26,7 +27,7 @@ def main():
             if int(utcTime.strftime("%M")) % 2 == 0 and int(utcTime.strftime("%S")) == 0:
                 replyToReplies(usedTweetList)
             if int(utcTime.strftime("%M")) % 2 == 0 and int(utcTime.strftime("%S")) == 30:
-                replyToTags(usedTaggedTweets=usedTagTweets)
+                replyToTags(usedTaggedTweets=usedTaggedTweets)
     except KeyboardInterrupt:
         print("Bot has been turned off")
 

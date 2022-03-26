@@ -1,8 +1,8 @@
-FROM python:slim
+FROM python
 COPY . /app
 
 WORKDIR /app
 
 RUN ["pip", "install", "-r", "rubelBot.txt"]
 
-ENTRYPOINT [ "python3", "main.py" ]
+CMD [ "python3", "main.py" ]

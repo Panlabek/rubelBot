@@ -18,9 +18,6 @@ auth=tweepy.OAuthHandler(consumer_key=CONSUMER_KEY, consumer_secret=CONSUMER_SEC
 auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 api=tweepy.API(auth)
 
-# if text of bot includes a price, chart or meme
-# reply too tweet that created this post
-
 def replyToTags(usedTaggedTweets: list[str]):
     timeDiff = datetime.timedelta(minutes=70) 
     startTime = datetime.datetime.now() - timeDiff
