@@ -24,10 +24,10 @@ def replyToReplies(usedTweets: list[str]) -> str:
     if tweets.data != None:
         for tweet in tweets.data:
             if tweet.id not in usedTweets:
-                if "price" not in tweet.text and "chart" not in tweet.text and "pepe" not in tweet.text:
+                tweetData = tweet.text.split()
+                if tweetData.count("@0xpiplup") < 2:
                     usedTweets.append(tweet.id)
                     pepeId = api.media_upload(getRandomPepe()).media_id_string
                     pepeId = [pepeId]
                     client.like(tweet_id=tweet.id)
                     client.create_tweet(in_reply_to_tweet_id=tweet.id, media_ids=pepeId)
-

@@ -1,7 +1,8 @@
 FROM python
-COPY . /app
 
 WORKDIR /app
+
+ADD . /app
 
 RUN ["pip", "install", "-r", "rubelBot.txt"]
 
