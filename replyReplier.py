@@ -20,7 +20,7 @@ api=tweepy.API(auth)
 def replyToReplies(usedTweets: list[str]) -> str:
     timeDiff = datetime.timedelta(minutes=70) 
     startTime = datetime.datetime.now() - timeDiff
-    tweets = client.search_recent_tweets(query="to:0xpiplup", start_time=startTime) 
+    tweets = client.search_recent_tweets(query="to:0xpiplup -@0xpiplup", start_time=startTime) # -@0xpiplup is a save check for tag replier
     if tweets.data != None:
         for tweet in tweets.data:
             if tweet.id not in usedTweets:
@@ -29,3 +29,4 @@ def replyToReplies(usedTweets: list[str]) -> str:
                 pepeId = [pepeId]
                 client.like(tweet_id=tweet.id)
                 client.create_tweet(in_reply_to_tweet_id=tweet.id, media_ids=pepeId)
+
