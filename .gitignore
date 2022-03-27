@@ -1,6 +1,6 @@
 *.csv
 *.png
 __pycache__/
-pepe_photos/
+pepePhotos/
 .env
 
