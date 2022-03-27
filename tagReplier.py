@@ -3,6 +3,8 @@ from decouple import config
 import datetime
 from rubelFetcher import dataFetcher
 from pepeRandomGenerator import getRandomPepe
+import os
+from rubelFetcher import dataFetcher
 CONSUMER_KEY = config("CONSUMER_KEY")
 CONSUMER_SECRET = config("CONSUMER_SECRET")
 ACCESS_KEY = config("ACCESS_KEY")
@@ -43,7 +45,12 @@ def priceHandler(tweet):
 
 def chartHandler(tweet):
     endDate = datetime.datetime.now()
-    matplotlibImg = f"RUB|USD{str(endDate)[:10]}.png"
+    if os.path.isfile(f"RUB|USD{str(endDate)[:10]}.png"):
+        matplotlibImg = f"RUB|USD{str(endDate)[:10]}.png"
+    else:
+        startDate = datetime.datetime.now() - datetime.timedelta(days=365) 
+        dataFetcher(startDate=startDate, endDate=endDate)
+        matplotlibImg = f"RUB|USD{str(endDate)[:10]}.png"
     mediaId = [api.media_upload(matplotlibImg).media_id_string]
     client.like(tweet_id=tweet.id)
     client.create_tweet(in_reply_to_tweet_id=tweet.id, media_ids=mediaId)
