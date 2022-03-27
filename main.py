@@ -23,7 +23,7 @@ def main():
                 rubTweetPoster(rubPrice=rubPrice, matplotlibImg=matplotlibImg,
                                placeId=getRandomUkrainianCity())
             if int(utcTime.strftime("%H")) == 14 and len(tweets) > 0:
-                tweets.clear()
+                resp = tweets.clear()
             if int(utcTime.strftime("%M")) % 2 == 0 and int(utcTime.strftime("%S")) == 0:
                 replyToReplies(usedTweetList)
             if int(utcTime.strftime("%M")) % 2 == 0 and int(utcTime.strftime("%S")) == 30:

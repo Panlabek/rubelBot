@@ -40,8 +40,9 @@ def priceHandler(tweet):
     startDate = datetime.datetime.now() - datetime.timedelta(days=365) 
     endDate = datetime.datetime.now()
     rubPrice = dataFetcher(startDate, endDate)
-    client.like(tweet_id=tweet.id)
-    client.create_tweet(in_reply_to_tweet_id=tweet.id, text=rubPrice)
+    resp = client.like(tweet_id=tweet.id)
+    resp = client.create_tweet(in_reply_to_tweet_id=tweet.id, text=rubPrice)
+    return resp
 
 def chartHandler(tweet):
     endDate = datetime.datetime.now()
@@ -52,11 +53,13 @@ def chartHandler(tweet):
         dataFetcher(startDate=startDate, endDate=endDate)
         matplotlibImg = f"RUB|USD{str(endDate)[:10]}.png"
     mediaId = [api.media_upload(matplotlibImg).media_id_string]
-    client.like(tweet_id=tweet.id)
-    client.create_tweet(in_reply_to_tweet_id=tweet.id, media_ids=mediaId)
+    resp = client.like(tweet_id=tweet.id)
+    resp = client.create_tweet(in_reply_to_tweet_id=tweet.id, media_ids=mediaId)
+    return resp
 
 def pepeHandler(tweet):
     mediaId = [api.media_upload(getRandomPepe()).media_id_string]
-    client.like(tweet_id=tweet.id)
-    client.create_tweet(in_reply_to_tweet_id=tweet.id, media_ids=mediaId)
+    resp = client.like(tweet_id=tweet.id)
+    resp = client.create_tweet(in_reply_to_tweet_id=tweet.id, media_ids=mediaId)
+    return resp
 

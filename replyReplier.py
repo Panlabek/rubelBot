@@ -29,5 +29,6 @@ def replyToReplies(usedTweets: list[str]) -> str:
                     usedTweets.append(tweet.id)
                     pepeId = api.media_upload(getRandomPepe()).media_id_string
                     pepeId = [pepeId]
-                    client.like(tweet_id=tweet.id)
-                    client.create_tweet(in_reply_to_tweet_id=tweet.id, media_ids=pepeId)
+                    resp = client.like(tweet_id=tweet.id)
+                    resp = client.create_tweet(in_reply_to_tweet_id=tweet.id, media_ids=pepeId)
+                    return resp
