@@ -20,8 +20,8 @@ def main():
                 rubPrice = dataFetcher(startDate, endDate)
                 matplotlibImg = f"RUB|USD{str(endDate)[:10]}.png"
                 tweets.append("Tweeted")
-                rubTweetPoster(rub_price=rubPrice, matplotlib_img=matplotlibImg,
-                               place_id=getRandomUkrainianCity())
+                rubTweetPoster(rubPrice=rubPrice, matplotlibImg=matplotlibImg,
+                               placeId=getRandomUkrainianCity())
             if int(utcTime.strftime("%H")) == 14 and len(tweets) > 0:
                 tweets.clear()
             if int(utcTime.strftime("%M")) % 2 == 0 and int(utcTime.strftime("%S")) == 0:
