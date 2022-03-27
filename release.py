@@ -5,7 +5,7 @@ import datetime
 
 destinedDirectory = "~/Documents/rubelArchives"
 
-hour = datetime.datetime.now().stftime("%H")
+hour = datetime.datetime.now().strftime("%H")
 
 today = datetime.datetime.now().strftime("%d")
 subprocess.run(["docker", "build", "-t", f"rubel-bot{today}{hour}", "."])
